@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刮刮樂</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <img id="ImgCard" src="img/刮刮樂.png" width="516" height="600" class="background-image">
+        <canvas id="CradCanvas" width="516" height="600"></canvas>
+        <canvas id="zwhCanvas" width="516" height="600"></canvas>
+        <img id="ImgRule" width="925" height="400" src="img/規則.png" class="right-image">
+        <img id="ImgBackColor1" width="925" height="70" src="img/中獎_紅.png">
+        <img id="ImgBackColor2" width="925" height="70" src="img/中獎_藍.png">
+        <img id="ImgBackColor3" width="925" height="70" src="img/中獎_黃.png">
+        <img id="ImgBackColor4" width="925" height="70" src="img/中獎_紫.png">
+        <img id="ImgBackColor5" width="925" height="70" src="img/中獎_綠.png">
+
+        <div id="CardCount1"></div>
+        <div id="CardCount2"></div>
+        <div id="CardCount3"></div>
+        <div id="CardCount4"></div>
+        <div id="CardCount5"></div>
+
+        <div id="CountText"><p>倒數時間：20秒</p></div>
+        
+
+        <button href="javascript: void(0)" class="btn" id="btn_Again">
+            <span>再刮..一張..</span>
+        </button>
+    </div>
+
+    <!-- <div id="overlay">
+        <div id="popup">
+            <img id="ImgResult" src="img/tag-01.png" alt="Popup Image">
+            <p id="countdownText">倒數 <span id="countdown">20</span> 秒</p>
+            <button id="closeButton">關閉視窗</button>
+        </div>
+    </div> -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

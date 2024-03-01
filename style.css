@@ -1,0 +1,299 @@
+@font-face {
+    font-family: Titan One;/* 字體的名稱 */
+    src:url('font/TitanOne-Regular.ttf') format('truetype');
+    font-family: GenSenRounded-B;/* 字體的名稱 */
+    src:url('font/GenSenRounded-B.ttc') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    /* 圖片在最下層 */
+}
+
+#CradCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    /* Canvas 在圖片上層 */
+}
+
+#zwhCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    /* Canvas 在圖片上層 */
+}
+
+#ImgRule {
+    position: absolute;
+    top: 0px;
+    left: 530px;
+    /* 調整為左側圖片的寬度 */
+    z-index: 2;  /* 確保圖片位於上層 */
+}
+
+#ImgBackColor1 {
+    position: absolute;
+    top: 42px;
+    left: 537px;
+    z-index: 1;  /* 確保圖片位於上層 */
+    visibility: hidden;
+}
+
+#ImgBackColor2 {
+    position: absolute;
+    top: 114px;
+    left: 537px;
+    z-index: 1;  /* 確保圖片位於上層 */
+    visibility: hidden;
+}
+
+
+#ImgBackColor3 {
+    position: absolute;
+    top: 186px;
+    left: 537px;
+    z-index: 1;  /* 確保圖片位於上層 */
+    visibility: hidden;
+}
+
+
+#ImgBackColor4 {
+    position: absolute;
+    top: 257px;
+    left: 537px;
+    z-index: 1;  /* 確保圖片位於上層 */
+    visibility: hidden;
+}
+
+#ImgBackColor5 {
+    position: absolute;
+    top: 328px;
+    left: 537px;
+    z-index: 1;  /* 確保圖片位於上層 */
+    visibility: hidden;
+}
+
+p {
+    /* font: 700 4em/1 "Oswald", sans-serif; */
+    font: 50px "GenSenRounded-B", sans-serif;
+  	letter-spacing: 0;
+  	padding: .25em 0 .325em;
+	  display: block;
+	  margin: 0 auto;
+  	text-shadow: 0 0 80px rgba(255,255,255,.5);
+
+/* Clip Background Image */
+
+	  /* background: url(https://i.ibb.co/RDTnNrT/animated-text-fill.png) repeat-y; */
+      background: url("img/文字特效1.png") repeat-y;
+	  -webkit-background-clip: text;
+	  background-clip: text;
+
+/* Animate Background Image */
+
+	  -webkit-text-fill-color: transparent;
+	  -webkit-animation: aitf 80s linear infinite;
+
+/* Activate hardware acceleration for smoother animations */
+
+	  -webkit-transform: translate3d(0,0,0);
+	  -webkit-backface-visibility: hidden;
+}
+
+/* Animate Background Image */
+
+@-webkit-keyframes aitf {
+	0% { background-position: 0% 50%; }
+	100% { background-position: 100% 50%; }
+}
+
+#CardCount1{
+    position: absolute;
+    top: 40px;
+    left: 1400px;
+    z-index: 2;
+}
+#CardCount2{
+    position: absolute;
+    top: 110px;
+    left: 1400px;
+    z-index: 2;
+}
+#CardCount3{
+    position: absolute;
+    top: 180px;
+    left: 1400px;
+    z-index: 2;
+}
+#CardCount4{
+    position: absolute;
+    top: 250px;
+    left: 1400px;
+    z-index: 2;
+}
+#CardCount5{
+    position: absolute;
+    top: 320px;
+    left: 1400px;
+    z-index: 2;
+}
+
+#CountText {
+    position: absolute;
+    top: 400px;
+    left: 537px;
+    /* 調整為左側圖片的寬度 */
+    /*z-index: 1;  確保圖片位於上層 */
+    font-family: 'GenSenRounded-B', cursive;
+    /* text-shadow: 0 0 10px #fbff1c, 綠色發光
+    0 0 20px #fbff1c, 綠色發光
+    0 0 30px #fbff1c; 綠色發光 */
+    font-size: 80px; /* 將字體大小設置為24像素 */
+    text-align: left; /* 將文本靠左對齊 */
+    visibility: hidden;
+}
+
+
+
+@media screen and (max-width: 526px) {
+    .container {
+        flex-direction: column;
+    }
+
+    #zwhCanvas,
+    .right-image {
+        flex-basis: 100%;
+        /* 在螢幕寬度小於 526px 時，所有子元素佔據整個行 */
+    }
+}
+
+.btn {
+    position: absolute;
+    top: 550px;
+    left: 530px;
+    min-width: 200px;
+    border: 3px solid #d48da9;
+    border-radius: 5px;
+    background: transparent;
+    color: #d48da9;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: border 0.5s ease-out;
+    transition-delay: 0.8s;
+    overflow: hidden;
+    transition: 0.5s;
+    padding: 10px 20px;
+}
+
+.btn:before,
+.btn:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    margin: auto;
+    content: 'Button';
+    border-radius: 50%;
+    display: block;
+    width: 22em;
+    height: 22em;
+    left: -5.5em;
+    text-align: center;
+    transition: box-shadow 0.5s ease-out;
+    transition-delay: 0.75s;
+}
+
+.btn:after {
+    transition-delay: 0.25s;
+}
+
+.btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.btn:hover {
+    color: #ffffff;
+    border-color: #e31029;
+    animation: anim 1.5s ease;
+    transition: border 0.2s ease;
+}
+
+.btn:hover::before {
+    box-shadow: inset 0 0 0 11em #e31029;
+    transition-delay: 0.05s;
+}
+
+.btn:hover::after {
+    box-shadow: inset 0 0 0 11em #e20591;
+    transition-delay: 0.5s;
+}
+
+@keyframes anim {
+    0% {
+        color: #d48da9;
+    }
+
+    50% {
+        color: #50514f;
+    }
+
+    100% {
+        color: #ffffff;
+    }
+}
+
+.container canvas {
+    /* background: url(http://images.performgroup.com/di/library/sporting_news/9a/a1/stephen-curry-ftr-getty-imagesjpg_1w96fue8l2ti4191ele662qkh5.jpg?t=-710915087&w=960&quality=70) no-repeat center center/cover; */
+    /* background: url(img/刮刮樂.png) no-repeat center center/cover; */
+    cursor: crosshair;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* 半透明黑色背景 */
+    z-index: 9999; /* 設置在最上層 */
+  }
+  
+  #popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 300px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 陰影效果 */
+    text-align: center;
+  }
+  
+  #closeButton {
+    margin-top: 10px;
+  }
