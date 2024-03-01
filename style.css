@@ -5,10 +5,10 @@
     src:url('font/GenSenRounded-B.ttc') format('truetype');
 }
 
-* {
+/* * {
     margin: 0;
     padding: 0;
-}
+} */
 
 .container {
     position: relative;
