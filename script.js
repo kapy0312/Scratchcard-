@@ -16,7 +16,8 @@ window.addEventListener('load', function () {
     CardLoad();
     CardGenerate();
     // CardConuter();
-
+    
+    deviceType = detectDeviceType();
     if (deviceType === 'mobile') {
         can.addEventListener('touchstart', handleTouchStart);
         console.log('現在使用的設備是行動裝置');
