@@ -167,7 +167,7 @@ p {
     0 0 30px #fbff1c; 綠色發光 */
     font-size: 80px; /* 將字體大小設置為24像素 */
     text-align: left;
-    /* visibility: hidden; */
+    visibility: hidden;
     white-space: nowrap; /* 禁止换行 */
 }
 
