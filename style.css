@@ -160,14 +160,15 @@ p {
     top: 400px;
     left: 537px;
     /* 調整為左側圖片的寬度 */
-    /*z-index: 1;  確保圖片位於上層 */
+    z-index: 1;  /*確保圖片位於上層 */
     font-family: 'GenSenRounded-B', cursive;
     /* text-shadow: 0 0 10px #fbff1c, 綠色發光
     0 0 20px #fbff1c, 綠色發光
     0 0 30px #fbff1c; 綠色發光 */
     font-size: 80px; /* 將字體大小設置為24像素 */
-    text-align: left; /* 將文本靠左對齊 */
-    visibility: hidden;
+    text-align: left;
+    /* visibility: hidden; */
+    white-space: nowrap; /* 禁止换行 */
 }
 
 
