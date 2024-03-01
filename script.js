@@ -15,7 +15,8 @@ window.addEventListener('load', function () {
     CardLoad();
     CardGenerate();
     // CardConuter();
-    can.onmousedown = handleMouseDown;
+    // can.onmousedown = handleMouseDown;
+    can.addEventListener('touchstart', handleTouchStart);
 });
 
 //版面調整
@@ -56,49 +57,60 @@ function Layout_Adjustment() {
 }
 //刮刮樂事件
 //-----------------------------------------------------
-function handleMouseDown(event) {
-    var ev = event || window.event;
-    var lastw = ev.clientX - can.offsetLeft;
-    var lasth = ev.clientY - can.offsetTop;
+// 刮刮乐事件
+//-----------------------------------------------------
+function handleTouchStart(event) {
+    event.preventDefault();
+    var touch = event.touches[0];
+    var lastw = touch.clientX - can.offsetLeft;
+    var lasth = touch.clientY - can.offsetTop;
     cxt.lineTo(lastw, lasth);
     cxt.beginPath();
 
+    can.addEventListener("touchmove", handleTouchMove, false);
+    can.addEventListener("touchend", handleTouchEnd, false);
+}
 
-    can.onmousemove = function (event) {
-        var ev = event || window.event;
-        var lastw = ev.clientX - can.offsetLeft;
-        var lasth = ev.clientY - can.offsetTop;
-        cxt.lineTo(lastw, lasth);
-        cxt.stroke();
-    }
+function handleTouchMove(event) {
+    event.preventDefault();
+    var touch = event.touches[0];
+    var lastw = touch.clientX - can.offsetLeft;
+    var lasth = touch.clientY - can.offsetTop;
+    cxt.lineTo(lastw, lasth);
+    cxt.stroke();
+}
 
-    can.onmouseup = function (event) {
-        can.onmousemove = null;
-        // var imageData = cxt.getImageData(0, 0, w, h);
-        var imageData = cxt.getImageData(parentX, parentY, parentWidth, parentHeight);
-        var pixels = imageData.data;
-        var transparentPixels = 0;
+function handleTouchEnd(event) {
+    event.preventDefault();
 
-        //檢查是否刮了80%了
-        for (var i = 0; i < pixels.length; i += 4) {
-            if (pixels[i + 3] === 0) { // 檢查透明像素
-                transparentPixels++;
-            }
-        }
+    var imageData = cxt.getImageData(parentX, parentY, parentWidth, parentHeight);
+    var pixels = imageData.data;
+    var transparentPixels = 0;
 
-        var totalPixels = parentWidth * parentHeight;
-        var transparencyPercentage = transparentPixels / totalPixels;
-
-        //如果刮開了 80% 或更多的畫布，則刪除 canvas 元素
-        if (transparencyPercentage >= 0.8) {
-            cxt.clearRect(0, 0, w, h);
-            CardConuter();
-            setTimeout(function () {
-                // $("#overlay").fadeIn();
-                Result();
-            }, 1000); // 1000 毫秒即 3 秒延迟
+    //檢查是否刮了80%了
+    for (var i = 0; i < pixels.length; i += 4) {
+        if (pixels[i + 3] === 0) { // 檢查透明像素
+            transparentPixels++;
         }
     }
+
+    var totalPixels = parentWidth * parentHeight;
+    var transparencyPercentage = transparentPixels / totalPixels;
+
+    //如果刮開了 80% 或更多的畫布，則刪除 canvas 元素
+    if (transparencyPercentage >= 0.8) {
+        cxt.clearRect(0, 0, w, h);
+        CardConuter();
+        setTimeout(function () {
+            // $("#overlay").fadeIn();
+            Result();
+        }, 1000); // 1000 毫秒即 3 秒延迟
+    }
+
+    can.removeEventListener("touchmove", handleTouchMove, false);
+    can.removeEventListener("touchend", handleTouchEnd, false);
+
+    // 进行其他操作
 }
 
 
@@ -114,7 +126,8 @@ $("#btn_Again").click(function () {
     $("#ImgBackColor4").css("visibility", "hidden");
     $("#ImgBackColor5").css("visibility", "hidden");
     clearInterval(interval);
-    can.onmousedown = handleMouseDown;
+    // can.onmousedown = handleMouseDown;
+    can.addEventListener('touchstart', handleTouchStart);
 
     $("#btn_Again").css("visibility", "hidden");
 });
