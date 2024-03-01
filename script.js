@@ -6,6 +6,7 @@
 var items, counts, ResultItems, interval;
 var can, cxt, w, h;
 var parentX, parentY, parentWidth, parentHeight;   // 父元素的 x 座標
+var deviceType;
 items = [1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5];
 
 window.addEventListener('load', function () {
@@ -15,8 +16,15 @@ window.addEventListener('load', function () {
     CardLoad();
     CardGenerate();
     // CardConuter();
-    // can.onmousedown = handleMouseDown;
-    can.addEventListener('touchstart', handleTouchStart);
+
+    if (deviceType === 'mobile') {
+        can.addEventListener('touchstart', handleTouchStart);
+        console.log('現在使用的設備是行動裝置');
+    } else {
+        can.onmousedown = handleMouseDown;
+        console.log('現在使用的設備是電腦');
+    }
+    
 });
 
 //版面調整
@@ -58,6 +66,9 @@ function Layout_Adjustment() {
 //刮刮樂事件
 //-----------------------------------------------------
 // 刮刮乐事件
+//-----------------------------------------------------
+
+//行動裝置事件
 //-----------------------------------------------------
 function handleTouchStart(event) {
     event.preventDefault();
@@ -112,7 +123,62 @@ function handleTouchEnd(event) {
 
     // 进行其他操作
 }
+//行動裝置事件
+//-----------------------------------------------------
+//-----------------------------------------------------
+//-----------------------------------------------------
 
+
+//電腦事件
+//-----------------------------------------------------
+function handleMouseDown(event) {
+    var ev = event || window.event;
+    var lastw = ev.clientX - can.offsetLeft;
+    var lasth = ev.clientY - can.offsetTop;
+    cxt.lineTo(lastw, lasth);
+    cxt.beginPath();
+
+
+    can.onmousemove = function (event) {
+        var ev = event || window.event;
+        var lastw = ev.clientX - can.offsetLeft;
+        var lasth = ev.clientY - can.offsetTop;
+        cxt.lineTo(lastw, lasth);
+        cxt.stroke();
+    }
+
+    can.onmouseup = function (event) {
+        can.onmousemove = null;
+        // var imageData = cxt.getImageData(0, 0, w, h);
+        var imageData = cxt.getImageData(parentX, parentY, parentWidth, parentHeight);
+        var pixels = imageData.data;
+        var transparentPixels = 0;
+
+        //檢查是否刮了80%了
+        for (var i = 0; i < pixels.length; i += 4) {
+            if (pixels[i + 3] === 0) { // 檢查透明像素
+                transparentPixels++;
+            }
+        }
+
+        var totalPixels = parentWidth * parentHeight;
+        var transparencyPercentage = transparentPixels / totalPixels;
+
+        //如果刮開了 80% 或更多的畫布，則刪除 canvas 元素
+        if (transparencyPercentage >= 0.8) {
+            cxt.clearRect(0, 0, w, h);
+            CardConuter();
+            setTimeout(function () {
+                // $("#overlay").fadeIn();
+                Result();
+            }, 1000); // 1000 毫秒即 3 秒延迟
+        }
+    }
+}
+//電腦事件
+//-----------------------------------------------------
+//-----------------------------------------------------
+//-----------------------------------------------------
 
 $("#btn_Again").click(function () {
     // 在這裡添加按鈕點擊後的動作
@@ -126,8 +192,14 @@ $("#btn_Again").click(function () {
     $("#ImgBackColor4").css("visibility", "hidden");
     $("#ImgBackColor5").css("visibility", "hidden");
     clearInterval(interval);
-    // can.onmousedown = handleMouseDown;
-    can.addEventListener('touchstart', handleTouchStart);
+
+    if (deviceType === 'mobile') {
+        can.addEventListener('touchstart', handleTouchStart);
+        console.log('現在使用的設備是行動裝置');
+    } else {
+        can.onmousedown = handleMouseDown;
+        console.log('現在使用的設備是電腦');
+    }
 
     $("#btn_Again").css("visibility", "hidden");
 });
@@ -287,5 +359,14 @@ function Result() {
                 }
             }, 1000); // 每秒执行一次
             break;
+    }
+}
+
+function detectDeviceType() {
+    // 检测是否是移动设备
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return 'mobile';
+    } else {
+        return 'desktop';
     }
 }
