@@ -1,8 +1,14 @@
 @font-face {
-    font-family: Titan One;/* 字體的名稱 */
-    src:url('font/TitanOne-Regular.ttf') format('truetype');
-    font-family: GenSenRounded-B;/* 字體的名稱 */
-    src:url('font/GenSenRounded-B.ttc') format('truetype');
+    font-family: Titan One;
+    src: url('font/TitanOne-Regular.ttf') format('truetype');/* 字體的名稱 */
+    font-family: GenSenRounded-B;
+    src: url('font/GenSenRounded-B.ttc') format('truetype'); /* 字體的名稱 */
+    font-family: GenSenRounded-R;
+    src: url('font/GenSenRounded-R.ttc') format('truetype'); /* 字體的名稱 */
+}
+
+body {
+    background-color: #f1f1f1; /* 浅蓝色 */
 }
 
 /* * {
@@ -45,114 +51,63 @@
     top: 0px;
     left: 530px;
     /* 調整為左側圖片的寬度 */
-    z-index: 2;  /* 確保圖片位於上層 */
+    z-index: 2;
+    /* 確保圖片位於上層 */
 }
 
-#ImgBackColor1 {
+.ImgBackColor {
     position: absolute;
-    top: 42px;
-    left: 537px;
-    z-index: 1;  /* 確保圖片位於上層 */
+    z-index: 1;
+    /* 確保圖片位於上層 */
     visibility: hidden;
 }
 
-#ImgBackColor2 {
+.RuleTableText {
     position: absolute;
-    top: 114px;
-    left: 537px;
-    z-index: 1;  /* 確保圖片位於上層 */
-    visibility: hidden;
+    z-index: 2;
 }
 
-
-#ImgBackColor3 {
-    position: absolute;
-    top: 186px;
-    left: 537px;
-    z-index: 1;  /* 確保圖片位於上層 */
-    visibility: hidden;
-}
-
-
-#ImgBackColor4 {
-    position: absolute;
-    top: 257px;
-    left: 537px;
-    z-index: 1;  /* 確保圖片位於上層 */
-    visibility: hidden;
-}
-
-#ImgBackColor5 {
-    position: absolute;
-    top: 328px;
-    left: 537px;
-    z-index: 1;  /* 確保圖片位於上層 */
-    visibility: hidden;
+h1 {
+    font: 30px "GenSenRounded-R", sans-serif;
 }
 
 p {
     /* font: 700 4em/1 "Oswald", sans-serif; */
     font: 50px "GenSenRounded-B", sans-serif;
-  	letter-spacing: 0;
-  	padding: .25em 0 .325em;
-	  display: block;
-	  margin: 0 auto;
-  	text-shadow: 0 0 80px rgba(255,255,255,.5);
+    letter-spacing: 0;
+    padding: .25em 0 .325em;
+    display: block;
+    margin: 0 auto;
+    text-shadow: 0 0 80px rgba(255, 255, 255, .5);
 
-/* Clip Background Image */
+    /* Clip Background Image */
 
-	  /* background: url(https://i.ibb.co/RDTnNrT/animated-text-fill.png) repeat-y; */
-      background: url("img/文字特效1.png") repeat-y;
-	  -webkit-background-clip: text;
-	  background-clip: text;
+    /* background: url(https://i.ibb.co/RDTnNrT/animated-text-fill.png) repeat-y; */
+    background: url("img/文字特效1.png") repeat-y;
+    -webkit-background-clip: text;
+    background-clip: text;
 
-/* Animate Background Image */
+    /* Animate Background Image */
 
-	  -webkit-text-fill-color: transparent;
-	  -webkit-animation: aitf 80s linear infinite;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: aitf 80s linear infinite;
 
-/* Activate hardware acceleration for smoother animations */
+    /* Activate hardware acceleration for smoother animations */
 
-	  -webkit-transform: translate3d(0,0,0);
-	  -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
 }
 
 /* Animate Background Image */
 
 @-webkit-keyframes aitf {
-	0% { background-position: 0% 50%; }
-	100% { background-position: 100% 50%; }
-}
+    0% {
+        background-position: 0% 50%;
+    }
 
-#CardCount1{
-    position: absolute;
-    top: 40px;
-    left: 1400px;
-    z-index: 2;
-}
-#CardCount2{
-    position: absolute;
-    top: 110px;
-    left: 1400px;
-    z-index: 2;
-}
-#CardCount3{
-    position: absolute;
-    top: 180px;
-    left: 1400px;
-    z-index: 2;
-}
-#CardCount4{
-    position: absolute;
-    top: 250px;
-    left: 1400px;
-    z-index: 2;
-}
-#CardCount5{
-    position: absolute;
-    top: 320px;
-    left: 1400px;
-    z-index: 2;
+    100% {
+        background-position: 100% 50%;
+    }
 }
 
 #CountText {
@@ -160,15 +115,18 @@ p {
     top: 400px;
     left: 537px;
     /* 調整為左側圖片的寬度 */
-    z-index: 1;  /*確保圖片位於上層 */
+    z-index: 1;
+    /*確保圖片位於上層 */
     font-family: 'GenSenRounded-B', cursive;
     /* text-shadow: 0 0 10px #fbff1c, 綠色發光
     0 0 20px #fbff1c, 綠色發光
     0 0 30px #fbff1c; 綠色發光 */
-    font-size: 80px; /* 將字體大小設置為24像素 */
+    font-size: 80px;
+    /* 將字體大小設置為24像素 */
     text-align: left;
     visibility: hidden;
-    white-space: nowrap; /* 禁止换行 */
+    white-space: nowrap;
+    /* 禁止换行 */
 }
 
 
@@ -272,29 +230,37 @@ p {
     cursor: crosshair;
 }
 
-#overlay {
+.modal {
     display: none;
     position: fixed;
-    top: 0;
+    z-index: 4;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* 半透明黑色背景 */
-    z-index: 9999; /* 設置在最上層 */
-  }
-  
-  #popup {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 300px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 陰影效果 */
-    text-align: center;
-  }
-  
-  #closeButton {
-    margin-top: 10px;
-  }
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px;
+    height: 400px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

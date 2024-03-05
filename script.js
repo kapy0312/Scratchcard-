@@ -16,7 +16,7 @@ window.addEventListener('load', function () {
     CardLoad();
     CardGenerate();
     // CardConuter();
-    
+
     deviceType = detectDeviceType();
     if (deviceType === 'mobile') {
         can.addEventListener('touchstart', handleTouchStart);
@@ -25,7 +25,7 @@ window.addEventListener('load', function () {
         can.onmousedown = handleMouseDown;
         console.log('現在使用的設備是電腦');
     }
-    
+
 });
 
 //版面調整
@@ -37,10 +37,21 @@ function Layout_Adjustment() {
     var imgCard = document.getElementById('ImgCard');
     var imgRule = document.getElementById('ImgRule');
 
-    var imgWidth = imgCard.width;
-    var imgHeight = imgCard.height;
-
     $("#btn_Again").css("visibility", "hidden");
+
+    var text = 
+        "1/快點跑/本人讓當月壽星砸1次，20秒\n" +
+        "2/快點砸/本人砸當月壽星1次，20秒\n" +
+        "3/免砸金牌/當有人要被砸時，可以救他\n" +
+        "4/輪盤、拉霸/隨機挑出幸運兒被砸，20秒\n" +
+        "5/PASS/沒事!!";
+    document.getElementById("setTextarea1").value = text;
+
+    // $("#AwardsText1").html("<h1>快點跑</h1>");
+    // $("#AwardsText2").html("<h1>快點跑</h1>");
+    // $("#AwardsText3").html("<h1>快點跑</h1>");
+    // $("#AwardsText4").html("<h1>快點跑</h1>");
+    // $("#AwardsText5").html("<h1>快點跑</h1>");
 
     // 調整圖像的位置
     if (windowWidth > (imgCard.width + imgRule.width + 20)) {
@@ -55,8 +66,12 @@ function Layout_Adjustment() {
             document.getElementById('ImgBackColor' + i).style.left = '0px';
             document.getElementById('ImgBackColor' + i).style.top = `${parseInt(window.getComputedStyle(document.getElementById('ImgBackColor' + i)).getPropertyValue('top'), 10) + (imgCard.height + 20)}px`;
 
-            var n1 = `${parseInt(window.getComputedStyle(document.getElementById('CardCount' + i)).getPropertyValue('left'), 10) - (imgCard.width + 20)}px`;
-            var n2 = `${parseInt(window.getComputedStyle(document.getElementById('CardCount' + i)).getPropertyValue('top'), 10) + (imgCard.height + 20)}px`;
+            document.getElementById('AwardsText' + i).style.left = `${parseInt(window.getComputedStyle(document.getElementById('AwardsText' + i)).getPropertyValue('left'), 10) - (imgCard.width + 20)}px`;
+            document.getElementById('AwardsText' + i).style.top = `${parseInt(window.getComputedStyle(document.getElementById('AwardsText' + i)).getPropertyValue('top'), 10) + (imgCard.height + 20)}px`;
+
+            document.getElementById('DirectionsText' + i).style.left = `${parseInt(window.getComputedStyle(document.getElementById('DirectionsText' + i)).getPropertyValue('left'), 10) - (imgCard.width + 20)}px`;
+            document.getElementById('DirectionsText' + i).style.top = `${parseInt(window.getComputedStyle(document.getElementById('DirectionsText' + i)).getPropertyValue('top'), 10) + (imgCard.height + 20)}px`;
+
             document.getElementById('CardCount' + i).style.left = `${parseInt(window.getComputedStyle(document.getElementById('CardCount' + i)).getPropertyValue('left'), 10) - (imgCard.width + 20)}px`;
             document.getElementById('CardCount' + i).style.top = `${parseInt(window.getComputedStyle(document.getElementById('CardCount' + i)).getPropertyValue('top'), 10) + (imgCard.height + 20)}px`;
         }
@@ -333,8 +348,12 @@ $("#closeButton").click(function () {
 
 function Result() {
     var idname = "#ImgBackColor" + ResultItems;
+    $("#AwardsText" + ResultItems).css("visibility", "visible");
+    $("#DirectionsText" + ResultItems).css("visibility", "visible");
+
+    $(idname).css("visibility", "visible");
     interval = setInterval(function () {
-        $(idname).css("visibility", "visible").fadeOut(1000).fadeIn(1000);
+        $(idname).fadeOut(1000).fadeIn(1000);
     }, 2000); // 2秒为一次循环
 
     $("#btn_Again").css("visibility", "visible");
@@ -371,3 +390,49 @@ function detectDeviceType() {
         return 'desktop';
     }
 }
+
+// 找到弹出窗口及关闭按钮
+var modal = document.getElementById('myModal');
+var setBtn = document.getElementById('setBtn');
+
+// 点击关闭按钮时关闭弹出窗口
+setBtn.onclick = function () {
+
+    var lines = document.getElementById("setTextarea1").value.split("\n");
+    var dataArray = [];
+    // 遍历每行数据
+    for (var i = 0; i < lines.length; i++) {
+        // 使用 "/" 分割每行数据
+        var row = lines[i].split("/");
+        $("#AwardsText" + (i + 1)).html("<h1>" + row[1] + "</h1>");
+        $("#DirectionsText" + (i + 1)).html("<h1>" + row[2] + "</h1>");
+        // 将每行数据存储到二维数组中
+        dataArray.push(row);
+    }
+
+    // 获取复选框元素
+    var checkbox = document.getElementById("checkbox1");
+
+    // 检查复选框是否被选中
+    if (checkbox.checked) {
+        for (var i = 1; i <= 5; i++) {
+            $("#AwardsText" + i).css("visibility", "hidden");
+            $("#DirectionsText" + i).css("visibility", "hidden");
+        }
+    }
+
+    modal.style.display = "none";
+}
+
+// 当用户点击其他地方，关闭弹出窗口
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// 当页面加载时显示弹出窗口
+window.onload = function () {
+    modal.style.display = "block";
+}
+

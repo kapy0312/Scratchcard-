@@ -14,17 +14,29 @@
         <canvas id="CradCanvas" width="516" height="600"></canvas>
         <canvas id="zwhCanvas" width="516" height="600"></canvas>
         <img id="ImgRule" width="925" height="400" src="img/規則.png" class="right-image">
-        <img id="ImgBackColor1" width="925" height="70" src="img/中獎_紅.png">
-        <img id="ImgBackColor2" width="925" height="70" src="img/中獎_藍.png">
-        <img id="ImgBackColor3" width="925" height="70" src="img/中獎_黃.png">
-        <img id="ImgBackColor4" width="925" height="70" src="img/中獎_紫.png">
-        <img id="ImgBackColor5" width="925" height="70" src="img/中獎_綠.png">
+        <img id="ImgBackColor1" width="925" height="70" style="top: 042px; left: 537px;" src="img/中獎_紅.png" class="ImgBackColor">
+        <img id="ImgBackColor2" width="925" height="70" style="top: 114px; left: 537px;" src="img/中獎_藍.png" class="ImgBackColor">
+        <img id="ImgBackColor3" width="925" height="70" style="top: 186px; left: 537px;" src="img/中獎_黃.png" class="ImgBackColor">
+        <img id="ImgBackColor4" width="925" height="70" style="top: 257px; left: 537px;" src="img/中獎_紫.png" class="ImgBackColor">
+        <img id="ImgBackColor5" width="925" height="70" style="top: 328px; left: 537px;" src="img/中獎_綠.png" class="ImgBackColor">
 
-        <div id="CardCount1"></div>
-        <div id="CardCount2"></div>
-        <div id="CardCount3"></div>
-        <div id="CardCount4"></div>
-        <div id="CardCount5"></div>
+        <div id="AwardsText1" style="top: 030px; left: 800px; white-space: nowrap;" class="RuleTableText"></div>
+        <div id="AwardsText2" style="top: 100px; left: 800px; white-space: nowrap;" class="RuleTableText"></div>
+        <div id="AwardsText3" style="top: 170px; left: 800px; white-space: nowrap;" class="RuleTableText"></div>
+        <div id="AwardsText4" style="top: 240px; left: 800px; white-space: nowrap;" class="RuleTableText"></div>
+        <div id="AwardsText5" style="top: 310px; left: 800px; white-space: nowrap;" class="RuleTableText"></div>
+
+        <div id="DirectionsText1" style="top: 030px; left: 960px; white-space: nowrap;" class="RuleTableText"></div>
+        <div id="DirectionsText2" style="top: 100px; left: 960px; white-space: nowrap;" class="RuleTableText"></div>
+        <div id="DirectionsText3" style="top: 170px; left: 960px; white-space: nowrap;" class="RuleTableText"></div>
+        <div id="DirectionsText4" style="top: 240px; left: 960px; white-space: nowrap;" class="RuleTableText"></div>
+        <div id="DirectionsText5" style="top: 310px; left: 960px; white-space: nowrap;" class="RuleTableText"></div>
+
+        <div id="CardCount1" style="top: 040px; left: 1400px;" class="RuleTableText"></div>
+        <div id="CardCount2" style="top: 110px; left: 1400px;" class="RuleTableText"></div>
+        <div id="CardCount3" style="top: 180px; left: 1400px;" class="RuleTableText"></div>
+        <div id="CardCount4" style="top: 250px; left: 1400px;" class="RuleTableText"></div>
+        <div id="CardCount5" style="top: 320px; left: 1400px;" class="RuleTableText"></div>
 
         <div id="CountText"><p>倒數時間：20秒</p></div>
         
@@ -33,6 +45,17 @@
             <span>再刮..一張..</span>
         </button>
     </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+          <h2>設定</h2>
+          <label for="checkbox" style="font-size: 16px;">初次隱藏規則</label>
+          <input type="checkbox" id="checkbox1" style="transform: scale(1.5);">
+          <br><br>
+          <textarea rows="15" cols="50" id="setTextarea1"></textarea>
+          <button id="setBtn">設定完成</button>
+        </div>
+      </div>
 
     <!-- <div id="overlay">
         <div id="popup">
