@@ -7,7 +7,7 @@ var items, counts, ResultItems, interval;
 var can, cxt, w, h;
 var parentX, parentY, parentWidth, parentHeight;   // 父元素的 x 座標
 var deviceType;
-items = [1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5];
+items = [1, 1,1, 2, 2,2, 3, 3, 3,3, 4, 4,4, 4, 5, 5, 5,5, 5, 5];
 
 window.addEventListener('load', function () {
     //刮刮樂前置作業
